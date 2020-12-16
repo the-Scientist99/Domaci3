@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css"
+        href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+        integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+    <link rel="stylesheet" href="./style.css">
+    <title>Domaci zadatak 3</title>
+</head>
+
+<body>
+    <div class="container">
+
+        <!-- Polja za unos parametara za pretragu -->
+        <h1 class="text-center my-3"><i class="fas fa-film"></i> Open Movie DataBase</h1>
+        <h4 class="text-center podnaslov">Svi podaci o Vašim omiljenim filmovima i serijama na jednom
+            mjestu!</h3>
+
+            <div class="row my-5 text-center">
+                <div class="col-3">
+                    <input type="text" class=" form-control" id="src_name" placeholder="Unesite kriterijum pretrage"
+                        required>
+                </div>
+                <div class="col-3">
+                    <select name="type" class=" form-control" id="type_of_src">
+                        <option value="movie">Filmovi</option>
+                        <option value="series">Serije</option>
+                    </select>
+                </div>
+                <div class="col-3">
+                    <input type="number" class="form-control" name="godina" id="rel_date" placeholder="Godina">
+                </div>
+                <div class="col-3">
+                    <button class="btn" id="search_btn" onclick="searchOMDB()">
+                        <i class="fas fa-search mr-3"></i>Pretraga</button>
+                </div>
+            </div>
+
+            <!-- Error poruka, u slucaju kada pretraga ne vrati validan rezultat -->
+            <h1 class="text-center" id="error_msg"></h1>
+
+            <!-- Galerija filmova -->
+            <div id="src_gallery">
+                <div class="row d-flex justify-content-center">
+                    <div class="gallery src_id" onclick="showSelected(id)">
+                        <img src="" alt="" class="src_img">
+                        <div class="src_title"></div>
+                    </div>
+                    <div class="gallery src_id" onclick="showSelected(id)">
+                        <img src="" alt="" class="src_img">
+                        <div class="src_title"></div>
+                    </div>
+                    <div class="gallery src_id" onclick="showSelected(id)">
+                        <img src="" alt="" class="src_img">
+                        <div class="src_title"></div>
+                    </div>
+                    <div class="gallery src_id" onclick="showSelected(id)">
+                        <img src="" alt="" class="src_img">
+                        <div class="src_title"></div>
+                    </div>
+                    <div class="gallery src_id" onclick="showSelected(id)">
+                        <img src="" alt="" class="src_img">
+                        <div class="src_title"></div>
+                    </div>
+                </div>
+                <div class="row d-flex justify-content-center">
+                    <div class="gallery src_id" onclick="showSelected(id)">
+                        <img src="" alt="" class="src_img">
+                        <div class="src_title"></div>
+                    </div>
+                    <div class="gallery src_id" onclick="showSelected(id)">
+                        <img src="" alt="" class="src_img">
+                        <div class="src_title"></div>
+                    </div>
+                    <div class="gallery src_id" onclick="showSelected(id)">
+                        <img src="" alt="" class="src_img">
+                        <div class="src_title"></div>
+                    </div>
+                    <div class="gallery src_id" onclick="showSelected(id)">
+                        <img src="" alt="" class="src_img">
+                        <div class="src_title"></div>
+                    </div>
+                    <div class="gallery src_id" onclick="showSelected(id)">
+                        <img src="" alt="" class="src_img">
+                        <div class="src_title"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Detaljniji rezultati o filmu/seriji -->
+            <div class="row" id="sel_result">
+                <div class="col-12">
+                    <button id="go_back" onclick="goBack()">Back</button>
+                </div>
+                <div class="col-5">
+                    <img src="" class="mx-auto d-block" alt="slika" id="sel_img">
+                </div>
+                <div class="col-7">
+                    <table class="table">
+                        <tr>
+                            <td class="ylw_clr">Naslov:</td>
+                            <td id="sel_title"></td>
+                        </tr>
+                        <tr>
+                            <td class="ylw_clr">Godina:</td>
+                            <td id="sel_year"></td>
+                        </tr>
+                        <tr>
+                            <td class="text-nowrap ylw_clr">Datum objavljivanja:</td>
+                            <td id="sel_rel_date"></td>
+                        </tr>
+                        <tr>
+                            <td class="ylw_clr">Trajanje:</td>
+                            <td id="sel_len"></td>
+                        </tr>
+                        <tr>
+                            <td class="ylw_clr">Režiser:</td>
+                            <td id="sel_director"></td>
+                        </tr>
+                        <tr>
+                            <td class="ylw_clr">Glumci:</td>
+                            <td id="sel_actors"></td>
+                        </tr>
+                        <tr>
+                            <td class="ylw_clr">Radnja:</td>
+                            <td id="sel_plot"></td>
+                        </tr>
+                        <tr id="tr_seasons">
+                            <td class="ylw_clr">Broj sezona:</td>
+                            <td id="sel_num_seasons"></td>
+                        </tr>
+                        <tr>
+                            <td class="ylw_clr">Ocjene gledalaca:</td>
+                            <td id="sel_grade"></td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script type="text/javascript"
+        src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+    <script src="./app.js"></script>
+</body>
+
+</html>

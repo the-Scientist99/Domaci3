@@ -1,0 +1,81 @@
+body {
+  background-color: #000;
+  color: #fff;
+}
+
+.podnaslov {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.form-control:focus,
+.btn:focus,
+.form-control:hover,
+.btn:hover {
+  border-color: #f3ce13;
+  box-shadow: inset 0 0.5px 0.5px rgba(0, 0, 0, 0.075), 0 0 8px #f3ce13;
+}
+
+.fa-film,
+.ylw_clr {
+  color: #f3ce13;
+}
+
+.btn {
+  border: 1px solid black;
+  background-color: rgb(209, 207, 207);
+  width: 100%;
+}
+
+#src_result {
+  margin-bottom: 10px;
+}
+
+#sel_grade {
+  list-style: none;
+}
+
+div.gallery {
+  margin: 5px;
+  border: 1px solid #000;
+  float: left;
+  width: 200px;
+  transition: all 1s;
+}
+
+div.gallery:hover {
+  border: 1px solid #f3ce13;
+  transform: scale(1.05);
+  transition: all 0.5s;
+}
+
+div.gallery img {
+  width: 100%;
+  height: 300px;
+}
+
+div.src_title {
+  padding: 15px;
+  text-align: center;
+}
+
+.table {
+  color: #fff;
+}
+
+#go_back {
+  padding: 5px;
+  text-align: center;
+  border: 1px solid #f3ce13;
+  border-radius: 20px;
+  width: 100px;
+  margin-bottom: 10px;
+  background-color: #000;
+  color: #fff;
+  transition: all 0.3s;
+}
+
+#go_back:hover {
+  background-color: #f3ce13;
+  color: #000;
+  transition: all 0.3s;
+}
